@@ -1,8 +1,11 @@
-package project.sample.com.luke.homeworkimage;
+package project.sample.com.luke.homeworkimage.activity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +17,22 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import project.sample.com.luke.homeworkimage.R;
+import project.sample.com.luke.homeworkimage.adapter.MyRecyclerViewAdapter;
+import project.sample.com.luke.homeworkimage.base.BaseFragment;
+import project.sample.com.luke.homeworkimage.data.ImgItem;
+import project.sample.com.luke.homeworkimage.define.Define;
+import project.sample.com.luke.homeworkimage.util.MyLog;
+
 /**
  * Created by itsm02 on 2017. 2. 6..
  */
 
 public class MyFragment1 extends BaseFragment {
+
+    RecyclerView recyclerView;
+    MyRecyclerViewAdapter myRecyclerViewAdapter;
+    LinearLayoutManager linearLayoutManager;
 
     public MyFragment1() {
         super();
@@ -35,6 +49,9 @@ public class MyFragment1 extends BaseFragment {
 
         View view = inflater.inflate(R.layout.myfragment1, container, false);
 
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+
+
         HtmlParsingAsyncTask htmlParsingAsyncTask = new HtmlParsingAsyncTask();
         htmlParsingAsyncTask.execute(null, null, null);
 
@@ -47,7 +64,6 @@ public class MyFragment1 extends BaseFragment {
         private final String getClass2 = "gallery-item-group";
         private final String getClass3 = "picture";
         private final String getClass4 = "gallery-item-caption";
-
         private final String getAttr1 = "src";
         private final String getAttr2 = "href";
         private final String getTag1 = "a";
@@ -92,7 +108,7 @@ public class MyFragment1 extends BaseFragment {
                     <!-- REPEATER ENDS -->
                  */
 
-                ImgItem imgItem = null;
+//                ImgItem imgItem = null;
                 Elements elements1 = null;
 
                 String imgPath = null;
@@ -104,10 +120,12 @@ public class MyFragment1 extends BaseFragment {
                 Elements elements = doc.getElementsByClass(getClass1);
                 for (int i = 0; i < elements.size(); i++) {
 
-                    imgItem = new ImgItem();
+
                     elements1 = elements.get(i).getElementsByClass(getClass2);
 
                     for (int j = 0; j < elements1.size(); j++) {
+
+                        ImgItem imgItem = new ImgItem();
 
                         imgPath = elements1.get(j).getElementsByClass(getClass3).attr(getAttr1);
                         imgItem.setImgPath(imgPath);
@@ -120,6 +138,7 @@ public class MyFragment1 extends BaseFragment {
                         imgItem.setImgWebId(imgWebId);
 
                         arrayList.add(imgItem);
+                        MyLog.d(imgItem.toString());
 
                     }
                 }
@@ -131,12 +150,22 @@ public class MyFragment1 extends BaseFragment {
             return arrayList;
         }
 
-
         @Override
         protected void onPostExecute(ArrayList arrayList) {
             super.onPostExecute(arrayList);
 
+            ImgItem item = (ImgItem) arrayList.get(0);
+
             MyLog.d(" arrayList = " + arrayList.size());
+
+            MyLog.d(" item = " + item);
+
+            myRecyclerViewAdapter = new MyRecyclerViewAdapter(arrayList, ((MainActivity) fragmentActivity).mImageFetcher);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(fragmentActivity, 3);
+
+            recyclerView.setAdapter(myRecyclerViewAdapter);
+            recyclerView.setLayoutManager(gridLayoutManager);
+
         }
     }
 

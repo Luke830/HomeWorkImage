@@ -1,4 +1,4 @@
-package project.sample.com.luke.homeworkimage;
+package project.sample.com.luke.homeworkimage.data;
 
 /**
  * Created by itsm02 on 2017. 2. 6..

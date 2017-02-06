@@ -1,4 +1,4 @@
-package project.sample.com.luke.homeworkimage;
+package project.sample.com.luke.homeworkimage.define;
 
 public class Define {
 
