@@ -51,6 +51,9 @@ public class MyFragment1 extends BaseFragment {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
 
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+
 
         HtmlParsingAsyncTask htmlParsingAsyncTask = new HtmlParsingAsyncTask();
         htmlParsingAsyncTask.execute(null, null, null);
@@ -159,12 +162,20 @@ public class MyFragment1 extends BaseFragment {
             MyLog.d(" arrayList = " + arrayList.size());
 
             MyLog.d(" item = " + item);
+            recyclerView.setHasFixedSize(false);
 
             myRecyclerViewAdapter = new MyRecyclerViewAdapter(arrayList, ((MainActivity) fragmentActivity).mImageFetcher);
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(fragmentActivity, 3);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 4);
+//            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(fragmentActivity);
 
-            recyclerView.setAdapter(myRecyclerViewAdapter);
+//            gridLayoutManager
+
             recyclerView.setLayoutManager(gridLayoutManager);
+            recyclerView.setAdapter(myRecyclerViewAdapter);
+
+
+
+//            recyclerView.setLayoutManager(linearLayoutManager);
 
         }
     }

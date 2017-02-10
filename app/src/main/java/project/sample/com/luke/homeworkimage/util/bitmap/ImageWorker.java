@@ -80,6 +80,8 @@ public abstract class ImageWorker {
             value = mImageCache.getBitmapFromMemCache(String.valueOf(data));
         }
 
+        Log.d(TAG, "BitmapDrawable value = " + value);
+
         if (value != null) {
             // Bitmap found in memory cache
             imageView.setImageDrawable(value);
@@ -180,7 +182,7 @@ public abstract class ImageWorker {
             bitmapWorkerTask.cancel(true);
             if (BuildConfig.DEBUG) {
                 final Object bitmapData = bitmapWorkerTask.mData;
-                Log.d(TAG, "cancelWork - cancelled work for " + bitmapData);
+                Log.e(TAG, "cancelWork - cancelled work for " + bitmapData);
             }
         }
     }
@@ -197,7 +199,7 @@ public abstract class ImageWorker {
             if (bitmapData == null || !bitmapData.equals(data)) {
                 bitmapWorkerTask.cancel(true);
                 if (BuildConfig.DEBUG) {
-                    Log.d(TAG, "cancelPotentialWork - cancelled work for " + data);
+                    Log.e(TAG, "cancelPotentialWork - cancelled work for " + data);
                 }
             } else {
                 // The same work is already in progress.
@@ -316,10 +318,10 @@ public abstract class ImageWorker {
             }
 
             final ImageView imageView = getAttachedImageView();
-            Log.d(TAG, "onPostExecute - imageView = " + imageView + " value = " + value);
+            Log.d(TAG, "onPostExecute imageView = " + imageView + " value = " + value);
             if (value != null && imageView != null) {
                 if (BuildConfig.DEBUG) {
-                    Log.d(TAG, "onPostExecute - setting bitmap");
+//                    Log.d(TAG, "onPostExecute - setting bitmap");
                 }
                 setImageDrawable(imageView, value);
             }

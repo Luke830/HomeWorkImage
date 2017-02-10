@@ -206,7 +206,8 @@ public abstract class AsyncTask<Params, Progress, Result> {
 
     private static final InternalHandler sHandler = new InternalHandler();
 
-    private static volatile Executor sDefaultExecutor = SERIAL_EXECUTOR;
+//    private static volatile Executor sDefaultExecutor = SERIAL_EXECUTOR;
+    private static volatile Executor sDefaultExecutor = DUAL_THREAD_EXECUTOR;
     private final WorkerRunnable<Params, Result> mWorker;
     private final FutureTask<Result> mFuture;
 
