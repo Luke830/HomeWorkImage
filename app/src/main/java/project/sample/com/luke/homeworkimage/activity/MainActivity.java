@@ -63,7 +63,7 @@ public class MainActivity extends BaseFragmentActivity {
         }
 
         ImageCache.ImageCacheParams cacheParams = new ImageCache.ImageCacheParams(this, DataUtil.IMAGE_CACHE_DIR);
-        cacheParams.setMemCacheSizePercent(0.7f); // Set memory cache to 25% of app memory
+        cacheParams.setMemCacheSizePercent(0.5f); // Set memory cache to 25% of app memory
 
         mImageFetcher = new ImageFetcher(this, mImageThumbSize);
         // mImageFetcher.setLoadingImage(R.drawable.empty_photo);
@@ -71,4 +71,14 @@ public class MainActivity extends BaseFragmentActivity {
     }
 
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+
+        mImageFetcher.setExitTasksEarly(true);
+        mImageFetcher.flushCache();
+//        mImageFetcher.clearCache();
+        mImageFetcher.closeCache();
+    }
 }

@@ -67,7 +67,7 @@ public abstract class ImageWorker {
      * @param data      The URL of the image to download.
      * @param imageView The ImageView to bind the downloaded image to.
      */
-    public void loadImage(Object data, ImageView imageView) {
+    public void loadImage(Object data, ImageView imageView, int pos) {
         if (data == null) {
             return;
         }
@@ -80,7 +80,10 @@ public abstract class ImageWorker {
             value = mImageCache.getBitmapFromMemCache(String.valueOf(data));
         }
 
-        Log.d(TAG, "BitmapDrawable value = " + value);
+        Log.e(TAG, "pos = " + pos);
+        Log.e(TAG, "data = " + data);
+        Log.e(TAG, "value = " + value);
+        Log.e(TAG, "imageView = " + imageView);
 
         if (value != null) {
             // Bitmap found in memory cache
@@ -95,7 +98,7 @@ public abstract class ImageWorker {
             // framework and slightly modified. Refer to the docs at the top of the class
             // for more info on what was changed.
 
-            // task.executeOnExecutor(AsyncTask.DUAL_THREAD_EXECUTOR);
+//             task.executeOnExecutor(AsyncTask.DUAL_THREAD_EXECUTOR);
             // task.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
             task.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
 

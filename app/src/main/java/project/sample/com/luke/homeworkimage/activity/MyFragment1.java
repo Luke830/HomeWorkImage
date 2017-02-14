@@ -3,6 +3,7 @@ package project.sample.com.luke.homeworkimage.activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -162,17 +163,22 @@ public class MyFragment1 extends BaseFragment {
             MyLog.d(" arrayList = " + arrayList.size());
 
             MyLog.d(" item = " + item);
-            recyclerView.setHasFixedSize(false);
+            recyclerView.setHasFixedSize(true);
 
             myRecyclerViewAdapter = new MyRecyclerViewAdapter(arrayList, ((MainActivity) fragmentActivity).mImageFetcher);
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 4);
-//            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(fragmentActivity);
+//            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(fragmentActivity, LinearLayoutManager.VERTICAL, false);
 
-//            gridLayoutManager
+
+            RecyclerView.LayoutParams params = new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT);
+            params.setMargins(0, 0, 0, 0);
+            gridLayoutManager.canScrollVertically();
 
             recyclerView.setLayoutManager(gridLayoutManager);
+//            recyclerView.setLayoutManager(linearLayoutManager);
             recyclerView.setAdapter(myRecyclerViewAdapter);
 
+            recyclerView.addItemDecoration(new DividerItemDecoration(fragmentActivity, DividerItemDecoration.VERTICAL));
 
 
 //            recyclerView.setLayoutManager(linearLayoutManager);

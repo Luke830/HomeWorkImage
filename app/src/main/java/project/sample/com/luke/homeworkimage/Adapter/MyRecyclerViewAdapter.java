@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import project.sample.com.luke.homeworkimage.R;
 import project.sample.com.luke.homeworkimage.data.ImgItem;
+import project.sample.com.luke.homeworkimage.define.Define;
 import project.sample.com.luke.homeworkimage.util.MyLog;
 import project.sample.com.luke.homeworkimage.util.bitmap.ImageFetcher;
 
@@ -22,6 +23,7 @@ public class MyRecyclerViewAdapter<T> extends RecyclerView.Adapter {
     private ImageFetcher imageFetcher;
 
     public MyRecyclerViewAdapter(ArrayList<T> arrayList, ImageFetcher imageFetcher) {
+        super();
         this.arrayList = arrayList;
         this.imageFetcher = imageFetcher;
     }
@@ -42,10 +44,10 @@ public class MyRecyclerViewAdapter<T> extends RecyclerView.Adapter {
 
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.row_mage_item, parent, false);
+        LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
+        View view = layoutInflater.inflate(R.layout.row_mage_item, viewGroup, false);
         MyViewHolder myViewHolder = new MyViewHolder(view);
 
         MyLog.d("myViewHolder =  " + myViewHolder);
@@ -69,7 +71,7 @@ public class MyRecyclerViewAdapter<T> extends RecyclerView.Adapter {
 
         final int pos = holder.getAdapterPosition();
         MyViewHolder myViewHolder = (MyViewHolder) holder;
-        ImgItem imgItem = (ImgItem) arrayList.get(pos);
+        ImgItem imgItem = (ImgItem) arrayList.get(position);
 
         MyLog.d("position =  " + pos + " position = " + position);
 //        MyLog.d("imgItem =  " + imgItem.toString());
@@ -77,7 +79,8 @@ public class MyRecyclerViewAdapter<T> extends RecyclerView.Adapter {
 
         myViewHolder.textView.setText("" + pos);
 
-//        imageFetcher.loadImage(Define.DOMAIN + imgItem.getImgPath(), myViewHolder.imageView);
+        imageFetcher.loadImage(Define.DOMAIN + imgItem.getImgPath(), myViewHolder.imageView, position);
+
 
     }
 

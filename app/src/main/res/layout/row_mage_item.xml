@@ -4,7 +4,7 @@
     android:layout_height="60dp"
     android:layout_centerInParent="true"
     android:layout_gravity="center"
-    android:background="@android:color/white"
+    android:background="@android:color/black"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -13,7 +13,16 @@
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_centerInParent="true"
+        android:adjustViewBounds="true"
         android:scaleType="center" />
+
+    <!--<ImageView-->
+    <!--android:id="@+id/image_view"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:adjustViewBounds="true"-->
+    <!--android:scaleType="center" />-->
 
     <TextView
         android:id="@+id/row_text_1"
