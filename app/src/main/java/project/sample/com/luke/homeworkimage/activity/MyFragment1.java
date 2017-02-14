@@ -19,21 +19,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import project.sample.com.luke.homeworkimage.R;
+import project.sample.com.luke.homeworkimage.adapter.CustomDividerItemDecoration;
 import project.sample.com.luke.homeworkimage.adapter.MyRecyclerViewAdapter;
 import project.sample.com.luke.homeworkimage.base.BaseFragment;
 import project.sample.com.luke.homeworkimage.data.ImgItem;
 import project.sample.com.luke.homeworkimage.define.Define;
+import project.sample.com.luke.homeworkimage.util.DataUtil;
 import project.sample.com.luke.homeworkimage.util.MyLog;
 
 /**
  * Created by itsm02 on 2017. 2. 6..
  */
 
-public class MyFragment1 extends BaseFragment {
+public class MyFragment1 extends BaseFragment implements View.OnClickListener {
 
-    RecyclerView recyclerView;
-    MyRecyclerViewAdapter myRecyclerViewAdapter;
-    LinearLayoutManager linearLayoutManager;
+    private RecyclerView recyclerView;
+    private MyRecyclerViewAdapter myRecyclerViewAdapter;
+    private LinearLayoutManager linearLayoutManager;
+    private ArrayList<ImgItem> arrayList;
 
     public MyFragment1() {
         super();
@@ -62,6 +65,24 @@ public class MyFragment1 extends BaseFragment {
         return view;
     }
 
+    @Override
+    public void onClick(View view) {
+
+        MyLog.d(" onClick = " + recyclerView.getChildAdapterPosition((View) view.getTag()));
+
+        int position = recyclerView.getChildAdapterPosition((View) view.getTag());
+        ImgItem imgItem = arrayList.get(position);
+
+        MyLog.d(imgItem.toString());
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("item", imgItem);
+//        DataUtil.replaceFragement(fragmentActivity, R.id.fragment_container, new MyFragment2(), bundle, this);
+        DataUtil.hideAddFragment(fragmentActivity, this, R.id.fragment_container, new MyFragment2(), bundle, this);
+
+
+    }
+
     public class HtmlParsingAsyncTask extends AsyncTask<Void, Void, ArrayList> {
 
         private final String getClass1 = "gallery-wrap";
@@ -72,7 +93,6 @@ public class MyFragment1 extends BaseFragment {
         private final String getAttr2 = "href";
         private final String getTag1 = "a";
 
-        private ArrayList<ImgItem> arrayList;
 
         @Override
         protected void onPreExecute() {
@@ -165,23 +185,22 @@ public class MyFragment1 extends BaseFragment {
             MyLog.d(" item = " + item);
             recyclerView.setHasFixedSize(true);
 
-            myRecyclerViewAdapter = new MyRecyclerViewAdapter(arrayList, ((MainActivity) fragmentActivity).mImageFetcher);
+            myRecyclerViewAdapter = new MyRecyclerViewAdapter(arrayList, ((MainActivity) fragmentActivity).mImageFetcher, MyFragment1.this);
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 4);
 //            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(fragmentActivity, LinearLayoutManager.VERTICAL, false);
 
 
-            RecyclerView.LayoutParams params = new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT);
-            params.setMargins(0, 0, 0, 0);
-            gridLayoutManager.canScrollVertically();
+//            RecyclerView.LayoutParams params = new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT);
+//            params.setMargins(0, 0, 0, 0);
+//            gridLayoutManager.canScrollVertically();
 
             recyclerView.setLayoutManager(gridLayoutManager);
 //            recyclerView.setLayoutManager(linearLayoutManager);
             recyclerView.setAdapter(myRecyclerViewAdapter);
 
-            recyclerView.addItemDecoration(new DividerItemDecoration(fragmentActivity, DividerItemDecoration.VERTICAL));
 
+            recyclerView.addItemDecoration(new CustomDividerItemDecoration(fragmentActivity, CustomDividerItemDecoration.GRID));
 
-//            recyclerView.setLayoutManager(linearLayoutManager);
 
         }
     }

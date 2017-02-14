@@ -21,11 +21,13 @@ public class MyRecyclerViewAdapter<T> extends RecyclerView.Adapter {
 
     private ArrayList<T> arrayList;
     private ImageFetcher imageFetcher;
+    private View.OnClickListener onClickListener;
 
-    public MyRecyclerViewAdapter(ArrayList<T> arrayList, ImageFetcher imageFetcher) {
+    public MyRecyclerViewAdapter(ArrayList<T> arrayList, ImageFetcher imageFetcher, View.OnClickListener onClickListener) {
         super();
         this.arrayList = arrayList;
         this.imageFetcher = imageFetcher;
+        this.onClickListener = onClickListener;
     }
 
     @Override
@@ -48,9 +50,10 @@ public class MyRecyclerViewAdapter<T> extends RecyclerView.Adapter {
 
         LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
         View view = layoutInflater.inflate(R.layout.row_mage_item, viewGroup, false);
-        MyViewHolder myViewHolder = new MyViewHolder(view);
+        MyViewHolder myViewHolder = new MyViewHolder(view, onClickListener);
 
-        MyLog.d("myViewHolder =  " + myViewHolder);
+
+        MyLog.d("myViewHolder =  " + myViewHolder + "pos " + myViewHolder.getAdapterPosition());
 
         return myViewHolder;
     }

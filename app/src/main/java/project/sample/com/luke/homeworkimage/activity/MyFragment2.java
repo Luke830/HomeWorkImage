@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 
 import project.sample.com.luke.homeworkimage.R;
 import project.sample.com.luke.homeworkimage.base.BaseFragment;
+import project.sample.com.luke.homeworkimage.data.ImgItem;
+import project.sample.com.luke.homeworkimage.util.MyLog;
 
 /**
  * Created by itsm02 on 2017. 2. 6..
@@ -29,6 +31,9 @@ public class MyFragment2 extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.myfragment2, container, false);
+
+        ImgItem imgItem = getArguments().getParcelable("item");
+        MyLog.d(imgItem.toString());
 
         return view;
     }

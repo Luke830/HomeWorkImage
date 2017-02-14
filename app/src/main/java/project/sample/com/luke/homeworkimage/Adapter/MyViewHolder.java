@@ -2,6 +2,7 @@ package project.sample.com.luke.homeworkimage.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import project.sample.com.luke.homeworkimage.R;
@@ -14,17 +15,22 @@ import project.sample.com.luke.homeworkimage.util.bitmap.RecyclingImageView;
 
 public class MyViewHolder extends RecyclerView.ViewHolder {
 
-    public RecyclingImageView imageView;
+    public ImageView imageView;
     public TextView textView;
 
-    public MyViewHolder(View itemView) {
+    public MyViewHolder(View itemView, View.OnClickListener onClickListener) {
 
         super(itemView);
 
         textView = (TextView) itemView.findViewById(R.id.row_text_1);
-        imageView = (RecyclingImageView) itemView.findViewById(R.id.image_view);
+        imageView = (ImageView) itemView.findViewById(R.id.image_view);
+        imageView.setOnClickListener(onClickListener);
+        imageView.setTag(itemView);
 
         MyLog.e("imageView =  " + imageView);
 
+
     }
+
+
 }

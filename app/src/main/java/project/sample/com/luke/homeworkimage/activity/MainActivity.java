@@ -75,7 +75,6 @@ public class MainActivity extends BaseFragmentActivity {
     public void onDestroy() {
         super.onDestroy();
 
-
         mImageFetcher.setExitTasksEarly(true);
         mImageFetcher.flushCache();
 //        mImageFetcher.clearCache();

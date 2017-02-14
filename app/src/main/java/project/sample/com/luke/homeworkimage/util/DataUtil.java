@@ -78,6 +78,8 @@ public class DataUtil {
         hideAddFragment(activity, hideFragment, layoutId, addFragment, bundle, addFragment.getClass().getName(), (object != null ? object.getClass().getName() : null));
     }
 
+
+
     public static void hideAddFragment(FragmentActivity activity, Fragment hideFragment, int layoutId, Fragment addFragment, Bundle bundle, String tag, String addToBackStack) {
         if (activity != null) {
             FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
