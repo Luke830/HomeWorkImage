@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -74,6 +76,8 @@ public class MyRecyclerViewAdapter<T> extends RecyclerView.Adapter {
         Picasso.with(context)
                 .load(Define.DOMAIN + imgItem.getImgPath())
                 .priority(Picasso.Priority.NORMAL)
+                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                .networkPolicy(NetworkPolicy.NO_CACHE)
                 .into(myViewHolder.imageView);
 
 //        Glide.with(myViewHolder.imageView.getContext())
