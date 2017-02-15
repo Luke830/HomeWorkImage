@@ -1,7 +1,9 @@
-package project.sample.com.luke.homeworkimage.base;
+package project.sample.com.luke.homeworkimage.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+
+import project.sample.com.luke.homeworkimage.activity.BaseFragmentActivity;
 
 
 public class BaseFragment extends Fragment {

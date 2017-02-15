@@ -1,16 +1,18 @@
 package project.sample.com.luke.homeworkimage.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
 import project.sample.com.luke.homeworkimage.R;
 import project.sample.com.luke.homeworkimage.data.ImgItem;
 import project.sample.com.luke.homeworkimage.define.Define;
-import project.sample.com.luke.homeworkimage.util.MyLog;
 import project.sample.com.luke.homeworkimage.util.bitmap.ImageFetcher;
 
 /**
@@ -19,12 +21,14 @@ import project.sample.com.luke.homeworkimage.util.bitmap.ImageFetcher;
 
 public class MyRecyclerViewAdapter<T> extends RecyclerView.Adapter {
 
+    private Context context;
     private ArrayList<T> arrayList;
     private ImageFetcher imageFetcher;
     private View.OnClickListener onClickListener;
 
-    public MyRecyclerViewAdapter(ArrayList<T> arrayList, ImageFetcher imageFetcher, View.OnClickListener onClickListener) {
+    public MyRecyclerViewAdapter(Context context, ArrayList<T> arrayList, ImageFetcher imageFetcher, View.OnClickListener onClickListener) {
         super();
+        this.context = context;
         this.arrayList = arrayList;
         this.imageFetcher = imageFetcher;
         this.onClickListener = onClickListener;
@@ -40,20 +44,12 @@ public class MyRecyclerViewAdapter<T> extends RecyclerView.Adapter {
         return arrayList.size();
     }
 
-    public Object getItem(int position) {
-        return arrayList.get(position);
-    }
-
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
         View view = layoutInflater.inflate(R.layout.row_mage_item, viewGroup, false);
         MyViewHolder myViewHolder = new MyViewHolder(view, onClickListener);
-
-
-        MyLog.d("myViewHolder =  " + myViewHolder + "pos " + myViewHolder.getAdapterPosition());
 
         return myViewHolder;
     }
@@ -71,21 +67,19 @@ public class MyRecyclerViewAdapter<T> extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-
-        final int pos = holder.getAdapterPosition();
         MyViewHolder myViewHolder = (MyViewHolder) holder;
         ImgItem imgItem = (ImgItem) arrayList.get(position);
+//        imageFetcher.loadImage(Define.DOMAIN + imgItem.getImgPath(), myViewHolder.imageView);
 
-        MyLog.d("position =  " + pos + " position = " + position);
-//        MyLog.d("imgItem =  " + imgItem.toString());
-        MyLog.d("imageView =  " + myViewHolder.imageView);
+//        Picasso.with(context)
+//                .load(Define.DOMAIN + imgItem.getImgPath())
+//                .into(myViewHolder.imageView);
 
-        myViewHolder.textView.setText("" + pos);
-
-        imageFetcher.loadImage(Define.DOMAIN + imgItem.getImgPath(), myViewHolder.imageView, position);
-
+        Glide.with(myViewHolder.imageView.getContext())
+                .load(Define.DOMAIN + imgItem.getImgPath())
+                .crossFade()
+                .into(myViewHolder.imageView);
 
     }
-
 
 }

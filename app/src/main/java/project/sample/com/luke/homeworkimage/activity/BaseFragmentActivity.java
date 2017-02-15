@@ -1,4 +1,4 @@
-package project.sample.com.luke.homeworkimage.base;
+package project.sample.com.luke.homeworkimage.activity;
 
 import android.content.Context;
 import android.os.Bundle;

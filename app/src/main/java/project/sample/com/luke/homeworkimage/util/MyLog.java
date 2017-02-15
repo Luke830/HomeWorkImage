@@ -5,7 +5,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.util.Log;
 
-import project.sample.com.luke.homeworkimage.define.Define;
+import project.sample.com.luke.homeworkimage.BuildConfig;
 
 public class MyLog {
 
@@ -40,7 +40,7 @@ public class MyLog {
      */
     public static void e(String a_sMessage, Object a_oValue) {
 
-        if (Define.ENABLE_LOG) {
+        if (BuildConfig.DEBUG) {
             Exception e = new Exception();
             StackTraceElement callerElement = e.getStackTrace()[1];
             Log.e(callerElement.getFileName(), getCallerInfo() + "[" + callerElement.getLineNumber() + "] " + "[ " + a_sMessage + " ] = " + a_oValue);
@@ -54,7 +54,7 @@ public class MyLog {
      */
     public static void e(String a_sMessage) {
 
-        if (Define.ENABLE_LOG) {
+        if (BuildConfig.DEBUG) {
             Exception e = new Exception();
             StackTraceElement callerElement = e.getStackTrace()[1];
             Log.e(callerElement.getFileName(), getCallerInfo() + "[" + callerElement.getLineNumber() + "] " + "[ " + a_sMessage + " ]");
@@ -63,7 +63,7 @@ public class MyLog {
 
     public static void e(Exception ex) {
 
-        if (Define.ENABLE_LOG) {
+        if (BuildConfig.DEBUG) {
             Exception e = new Exception();
             StackTraceElement callerElement = e.getStackTrace()[1];
             Log.e(callerElement.getFileName(), getCallerInfo() + "[" + callerElement.getLineNumber() + "] ", ex);
@@ -78,7 +78,7 @@ public class MyLog {
      */
     public static void w(String a_sMessage, Object a_oValue) {
 
-        if (Define.ENABLE_LOG) {
+        if (BuildConfig.DEBUG) {
             Exception e = new Exception();
             StackTraceElement callerElement = e.getStackTrace()[1];
             Log.w(callerElement.getFileName(), getCallerInfo() + "[" + callerElement.getLineNumber() + "] " + "[ " + a_sMessage + " ] = " + a_oValue);
@@ -92,7 +92,7 @@ public class MyLog {
      */
     public static void w(String a_sMessage) {
 
-        if (Define.ENABLE_LOG) {
+        if (BuildConfig.DEBUG) {
             Exception e = new Exception();
             StackTraceElement callerElement = e.getStackTrace()[1];
             Log.w(callerElement.getFileName(), getCallerInfo() + "[" + callerElement.getLineNumber() + "] " + "[ " + a_sMessage + " ]");
@@ -107,7 +107,7 @@ public class MyLog {
      */
     public static void i(String a_sMessage, Object a_oValue) {
 
-        if (Define.ENABLE_LOG) {
+        if (BuildConfig.DEBUG) {
             Exception e = new Exception();
             StackTraceElement callerElement = e.getStackTrace()[1];
             Log.i(callerElement.getFileName(), getCallerInfo() + "[" + callerElement.getLineNumber() + "] " + "[ " + a_sMessage + " ] = " + a_oValue);
@@ -121,7 +121,7 @@ public class MyLog {
      */
     public static void i(String a_sMessage) {
 
-        if (Define.ENABLE_LOG) {
+        if (BuildConfig.DEBUG) {
             Exception e = new Exception();
             StackTraceElement callerElement = e.getStackTrace()[1];
             Log.i(callerElement.getFileName(), getCallerInfo() + "[ " + callerElement.getLineNumber() + "] " + "[ " + a_sMessage + " ]");
@@ -136,7 +136,7 @@ public class MyLog {
      */
     public static void d(String a_sMessage, Object a_oValue) {
 
-        if (Define.ENABLE_LOG) {
+        if (BuildConfig.DEBUG) {
             Exception e = new Exception();
             StackTraceElement callerElement = e.getStackTrace()[1];
             Log.d(callerElement.getFileName(), getCallerInfo() + "[" + callerElement.getLineNumber() + "] " + "[ " + a_sMessage + " ] = " + a_oValue);
@@ -150,7 +150,7 @@ public class MyLog {
      */
     public static void d(String a_sMessage) {
 
-        if (Define.ENABLE_LOG) {
+        if (BuildConfig.DEBUG) {
             Exception e = new Exception();
             StackTraceElement callerElement = e.getStackTrace()[1];
             Log.d(callerElement.getFileName(), getCallerInfo() + "[" + callerElement.getLineNumber() + "] " + "[ " + a_sMessage + " ]");
@@ -165,7 +165,7 @@ public class MyLog {
      */
     public static void v(String a_sMessage, Object a_oValue) {
 
-        if (Define.ENABLE_LOG) {
+        if (BuildConfig.DEBUG) {
             Exception e = new Exception();
             StackTraceElement callerElement = e.getStackTrace()[1];
             Log.v(callerElement.getFileName(), getCallerInfo() + "[" + callerElement.getLineNumber() + "] " + "[ " + a_sMessage + " ] = " + a_oValue);
@@ -179,7 +179,7 @@ public class MyLog {
      */
     public static void v(String a_sMessage) {
 
-        if (Define.ENABLE_LOG) {
+        if (BuildConfig.DEBUG) {
             Exception e = new Exception();
             StackTraceElement callerElement = e.getStackTrace()[1];
             Log.v(callerElement.getFileName(), getCallerInfo() + "[" + callerElement.getLineNumber() + "] " + "[ " + a_sMessage + " ]");

@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">HomeWorkImage</string>
+
+    <string name="no_network_connection_toast">No network connection found</string>
+
+    <string name="parsing_msg_1">메인 웹페이지 파싱 중입니다. 잠시만 기달려주세요.</string>
+    <string name="parsing_msg_2">서브 웹페이지 파싱 중입니다. 잠시만 기달려주세요.</string>
+
+    <string name="parsing_error">웹페이지 파싱이 실패하였습니다. 다시 시도해주세요.</string>
+
 </resources>
