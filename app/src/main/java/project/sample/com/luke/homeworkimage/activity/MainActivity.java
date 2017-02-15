@@ -6,8 +6,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 
-import com.bumptech.glide.Glide;
-
 import project.sample.com.luke.homeworkimage.BuildConfig;
 import project.sample.com.luke.homeworkimage.R;
 import project.sample.com.luke.homeworkimage.fragment.MyFragment1;
@@ -88,7 +86,8 @@ public class MainActivity extends BaseFragmentActivity {
             mImageFetcher = null;
         }
 
-        Glide.get(this).clearMemory();
-        Glide.get(this).clearDiskCache();
+
+//        Glide.get(this).clearMemory();
+//        Glide.get(this).clearDiskCache();
     }
 }

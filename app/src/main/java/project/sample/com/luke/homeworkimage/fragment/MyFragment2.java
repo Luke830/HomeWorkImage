@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -155,14 +155,15 @@ public class MyFragment2 extends BaseFragment {
 //                ((MainActivity) fragmentActivity).mImageFetcher.setExitTasksEarly(false);
 //                ((MainActivity) fragmentActivity).mImageFetcher.loadImage(Define.DOMAIN + imgPath, imageView);
 
-//                Picasso.with(fragmentActivity)
-//                        .load(Define.DOMAIN + imgPath)
-//                        .into(imageView);
-
-                Glide.with(fragmentActivity)
+                Picasso.with(fragmentActivity)
                         .load(Define.DOMAIN + imgPath)
-                        .crossFade()
+                        .priority(Picasso.Priority.HIGH)
                         .into(imageView);
+
+//                Glide.with(fragmentActivity)
+//                        .load(Define.DOMAIN + imgPath)
+//                        .crossFade()
+//                        .into(imageView);
 
             } else {
                 Toast.makeText(fragmentActivity, R.string.parsing_error, Toast.LENGTH_SHORT).show();

@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -71,14 +71,15 @@ public class MyRecyclerViewAdapter<T> extends RecyclerView.Adapter {
         ImgItem imgItem = (ImgItem) arrayList.get(position);
 //        imageFetcher.loadImage(Define.DOMAIN + imgItem.getImgPath(), myViewHolder.imageView);
 
-//        Picasso.with(context)
-//                .load(Define.DOMAIN + imgItem.getImgPath())
-//                .into(myViewHolder.imageView);
-
-        Glide.with(myViewHolder.imageView.getContext())
+        Picasso.with(context)
                 .load(Define.DOMAIN + imgItem.getImgPath())
-                .crossFade()
+                .priority(Picasso.Priority.NORMAL)
                 .into(myViewHolder.imageView);
+
+//        Glide.with(myViewHolder.imageView.getContext())
+//                .load(Define.DOMAIN + imgItem.getImgPath())
+//                .crossFade()
+//                .into(myViewHolder.imageView);
 
     }
 
