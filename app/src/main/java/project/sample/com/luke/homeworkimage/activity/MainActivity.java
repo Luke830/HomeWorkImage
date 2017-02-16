@@ -24,7 +24,6 @@ public class MainActivity extends BaseFragmentActivity {
 
         super.onCreate(savedInstanceState);
 
-
         if (BuildConfig.DEBUG) {
             StrictMode.ThreadPolicy.Builder builder = new StrictMode.ThreadPolicy.Builder();
 //        builder.detectCustomSlowCalls(); // api level 11
@@ -49,9 +48,9 @@ public class MainActivity extends BaseFragmentActivity {
 
         setContentView(R.layout.activity_main);
 
-        initImageCache();
-
         DataUtil.replaceFragement(this, R.id.fragment_container, new MyFragment1());
+
+        initImageCache();
 
     }
 
