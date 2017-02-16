@@ -25,7 +25,6 @@ import project.sample.com.luke.homeworkimage.adapter.MyRecyclerViewAdapter;
 import project.sample.com.luke.homeworkimage.data.ImgItem;
 import project.sample.com.luke.homeworkimage.define.Define;
 import project.sample.com.luke.homeworkimage.util.DataUtil;
-import project.sample.com.luke.homeworkimage.util.MyLog;
 
 
 public class MyFragment1 extends BaseFragment implements View.OnClickListener {
@@ -34,8 +33,6 @@ public class MyFragment1 extends BaseFragment implements View.OnClickListener {
     private MyRecyclerViewAdapter myRecyclerViewAdapter;
     private ArrayList<ImgItem> arrayList;
 
-//    private int mImageThumbSize;
-//    private ImageFetcher mImageFetcher;
 
     public MyFragment1() {
         super();
@@ -54,14 +51,8 @@ public class MyFragment1 extends BaseFragment implements View.OnClickListener {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
 
-//        initImageCache();
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-
         HtmlParsingAsyncTask htmlParsingAsyncTask = new HtmlParsingAsyncTask();
         htmlParsingAsyncTask.execute(null, null, null);
-
 
         return view;
     }
@@ -70,7 +61,6 @@ public class MyFragment1 extends BaseFragment implements View.OnClickListener {
     public void onDestroy() {
         super.onDestroy();
 
-//        destoryImageCache();
     }
 
 
@@ -78,18 +68,12 @@ public class MyFragment1 extends BaseFragment implements View.OnClickListener {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
 
-        MyLog.e("hidden = " + hidden);
-
         if (hidden) {
-//            mImageFetcher.setExitTasksEarly(true);
-
             ((MainActivity) fragmentActivity).mImageFetcher.setPauseWork(false);
             ((MainActivity) fragmentActivity).mImageFetcher.setExitTasksEarly(true);
             ((MainActivity) fragmentActivity).mImageFetcher.flushCache();
 
         } else {
-//            mImageFetcher.setExitTasksEarly(false);
-
             ((MainActivity) fragmentActivity).mImageFetcher.setExitTasksEarly(false);
             myRecyclerViewAdapter.notifyDataSetChanged();
         }
@@ -109,46 +93,8 @@ public class MyFragment1 extends BaseFragment implements View.OnClickListener {
 
     }
 
-//    public void initImageCache() {
-//
-//        if (mImageFetcher == null) {
-//            if (Build.VERSION.SDK_INT >= 13) {
-//                Point point = new Point();
-//                fragmentActivity.getWindowManager().getDefaultDisplay().getSize(point);
-//                mImageThumbSize = point.x;
-//            } else {
-//                mImageThumbSize = fragmentActivity.getWindowManager().getDefaultDisplay().getWidth();
-//            }
-//
-//            ImageCache.ImageCacheParams cacheParams = new ImageCache.ImageCacheParams(fragmentActivity, DataUtil.IMAGE_CACHE_DIR);
-//            cacheParams.setMemCacheSizePercent(0.5f); // Set memory cache to 25% of app memory
-//
-//            mImageFetcher = new ImageFetcher(fragmentActivity, mImageThumbSize);
-////        mImageFetcher.setLoadingImage(R.drawable.empty_photo);
-//            mImageFetcher.addImageCache(fragmentActivity.getSupportFragmentManager(), cacheParams);
-//        }
-//    }
-
-//    public void destoryImageCache() {
-//        if (mImageFetcher != null) {
-//            mImageFetcher.setExitTasksEarly(true);
-//            mImageFetcher.flushCache();
-////        mImageFetcher.clearCache();
-//            mImageFetcher.closeCache();
-//            mImageFetcher = null;
-//        }
-//    }
-
-
     public class HtmlParsingAsyncTask extends AsyncTask<Void, Void, ArrayList> {
 
-        private final String getClass1 = "gallery-wrap";
-        private final String getClass2 = "gallery-item-group";
-        private final String getClass3 = "picture";
-        private final String getClass4 = "gallery-item-caption";
-        private final String getAttr1 = "src";
-        private final String getAttr2 = "href";
-        private final String getTag1 = "a";
 
         private ProgressDialog progressDialog;
 
@@ -175,6 +121,8 @@ public class MyFragment1 extends BaseFragment implements View.OnClickListener {
                 Document doc = Jsoup.connect(Define.DOMAIN + "/collections/archive/slim-aarons.aspx").get();
 
                 /*
+
+                메인 페이지 html 코드
                 <div class="gallery-wrap exhibitionrepeater">
 
                   <!-- REPEATER -->
@@ -196,7 +144,17 @@ public class MyFragment1 extends BaseFragment implements View.OnClickListener {
                             </div>
                         </div>
                     <!-- REPEATER ENDS -->
+
+                 </div>
                  */
+
+                final String getClass1 = "gallery-wrap";
+                final String getClass2 = "gallery-item-group";
+                final String getClass3 = "picture";
+                final String getClass4 = "gallery-item-caption";
+                final String getAttr1 = "src";
+                final String getAttr2 = "href";
+                final String getTag1 = "a";
 
                 Elements elements1 = null;
 

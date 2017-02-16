@@ -6,10 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 import project.sample.com.luke.homeworkimage.R;
@@ -71,14 +67,14 @@ public class MyRecyclerViewAdapter<T> extends RecyclerView.Adapter {
 
         MyViewHolder myViewHolder = (MyViewHolder) holder;
         ImgItem imgItem = (ImgItem) arrayList.get(position);
-//        imageFetcher.loadImage(Define.DOMAIN + imgItem.getImgPath(), myViewHolder.imageView);
+        imageFetcher.loadImage(Define.DOMAIN + imgItem.getImgPath(), myViewHolder.imageView);
 
-        Picasso.with(context)
-                .load(Define.DOMAIN + imgItem.getImgPath())
-                .priority(Picasso.Priority.NORMAL)
-                .memoryPolicy(MemoryPolicy.NO_CACHE)
-                .networkPolicy(NetworkPolicy.NO_CACHE)
-                .into(myViewHolder.imageView);
+//        Picasso.with(context)
+//                .load(Define.DOMAIN + imgItem.getImgPath())
+//                .priority(Picasso.Priority.NORMAL)
+//                .memoryPolicy(MemoryPolicy.NO_CACHE)
+//                .networkPolicy(NetworkPolicy.NO_CACHE)
+//                .into(myViewHolder.imageView);
 
 //        Glide.with(myViewHolder.imageView.getContext())
 //                .load(Define.DOMAIN + imgItem.getImgPath())

@@ -70,7 +70,6 @@ public class MainActivity extends BaseFragmentActivity {
             cacheParams.setMemCacheSizePercent(0.5f); // Set memory cache to 25% of app memory
 
             mImageFetcher = new ImageFetcher(this, mImageThumbSize);
-//            mImageFetcher.setLoadingImage(R.drawable.empty_photo);
             mImageFetcher.addImageCache(getSupportFragmentManager(), cacheParams);
         }
     }
@@ -81,13 +80,8 @@ public class MainActivity extends BaseFragmentActivity {
         if (mImageFetcher != null) {
             mImageFetcher.setExitTasksEarly(true);
             mImageFetcher.flushCache();
-//        mImageFetcher.clearCache();
             mImageFetcher.closeCache();
             mImageFetcher = null;
         }
-
-
-//        Glide.get(this).clearMemory();
-//        Glide.get(this).clearDiskCache();
     }
 }
